@@ -1,23 +1,788 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
+
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "도수치료 실비보험 청구 시 세대별로 본인부담금 차이가 어떻게 되나요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "가입 시기에 따라 다릅니다. 1세대 실손보험은 본인부담금이 거의 없이 치료비를 보장받을 수 있지만, 2세대는 상품에 따라 10퍼센트에서 20퍼센트, 3세대 비급여 특약은 30퍼센트의 본인부담금이 발생합니다. 현재 시행 중인 4세대 실손의료보험의 경우 도수치료는 비급여 항목으로 분류되어 30퍼센트의 본인부담금과 3만원의 최소 공제금액 중 더 큰 금액을 공제하고 보상금이 지급됩니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "2026년 기준 4세대 실비보험에서 도수치료를 많이 받으면 보험료가 할증되나요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "그렇습니다. 4세대 실손의료보험에 도입된 비급여 보험료 차등제에 따라, 연간 비급여 보상금 지급액이 100만원 이상일 때부터 보험료 할증 단계가 적용됩니다. 비급여 항목인 도수치료 청구액이 많아지면 다음 해 비급여 보험료가 100퍼센트에서 최대 300퍼센트까지 할증될 수 있으므로, 청구 누적 금액을 계산기 앱 등을 통해 미리 점검하는 것이 유리합니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "도수치료 실비 청구 시 병원에서 발급받아야 하는 필수 서류는 무엇인가요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "기본적으로 진료비 계산서 영수증, 비급여 항목의 구체적 내역이 나와 있는 진료비 세부내역서가 필요합니다. 치료의 목적이 단순 미용이나 체형 교정이 아닌 치료 목적임을 소명하기 위해 진단서, 소견서 또는 처방전이 추가로 요구될 수 있습니다. 특히 4세대의 경우 일정 횟수 이상 치료 시 객관적인 증상 개선 효과 입증 서류를 요청받을 수 있습니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "도수치료와 도수치료가 아닌 추나요법의 실손보험 보장 차이점은 무엇인가요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "도수치료는 양방 병의원에서 물리치료사가 의사의 처방 하에 손으로 관절과 근육을 치료하는 비급여 항목입니다. 반면 추나요법은 한의원에서 한의사가 직접 수기로 척추와 관절을 교정하는 치료로, 건강보험 혜택이 적용되는 급여 항목에 해당합니다. 실비보험 적용 시 급여와 비급여의 본인부담금 적용 비율이 달라지므로 본인이 가입한 실손보험 상품 종류를 먼저 확인해야 합니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "실손보험 신규 가입 시 다이렉트 온라인 가입이 설계사를 통하는 것보다 저렴한가요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "인터넷이나 모바일 앱을 이용하는 다이렉트 실손보험은 중간 수수료가 발생하지 않아 오프라인 가입 대비 평균적으로 보험료가 저렴하게 책정되는 장점이 있습니다. 다만 상품 가입 전 세대별 보장 내용의 장단점과 갱신 주기 등을 꼼꼼하게 비교 분석하여 자신에게 가장 알맞은 요금제를 선택하는 것이 중요합니다."
+          }
+        }
+      ]
+    }
+    </script>
+
+    <style>
+        :root {
+            --primary-color: #2E5A44; /* 차분하고 깊은 포레스트 그린 */
+            --secondary-color: #557A65; /* 연한 그린 */
+            --accent-color: #D37B5D; /* 부드러운 테라코타 오렌지 */
+            --text-color: #2F3E36; /* 짙은 숯색 */
+            --bg-light: #F7F6F3; /* 부드러운 아이보리 톤의 연회색 */
+            --bg-medium: #E1E5E1; /* 중간 회색 */
+            --bg-dark: #2E5A44;
+            --btn-cta: #D37B5D;
+            --soft-yellow: #ECE3CD; /* 톤다운된 엘로우 크림 */
+            --soft-blue: #E2EAF4; /* 차분한 연청색 */
+            --white: #FFFFFF;
+        }
+        
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
+        
+        body { 
+            font-family: 'Noto Sans KR', sans-serif; 
+            margin: 0; 
+            padding: 0; 
+            background-color: var(--bg-light); 
+            color: var(--text-color); 
+            line-height: 1.9; 
+            font-weight: 400; 
+        }
+        .container { 
+            max-width: 1100px; 
+            margin: 0 auto; 
+            padding: 0 25px; 
+        }
+        
+        /* 헤더 */
+        header { 
+            background-color: var(--white); 
+            padding: 30px 0; 
+            text-align: center; 
+            border-bottom: 4px solid var(--secondary-color); 
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+        }
+        header h1 { 
+            margin: 0; 
+            font-size: 2.2em; 
+            color: var(--primary-color); 
+            font-weight: 900; 
+            letter-spacing: -1px;
+        }
+        header h1 a { 
+            text-decoration: none; 
+            color: inherit; 
+        }
+
+        /* 히어로 섹션 */
+        .hero { 
+            background: linear-gradient(135deg, var(--primary-color) 0%, #466A55 100%); 
+            color: var(--white); 
+            text-align: center; 
+            padding: 80px 20px 60px; 
+        }
+        .hero h1 { 
+            font-size: 3em; 
+            margin-bottom: 15px; 
+            font-weight: 900; 
+            letter-spacing: -1px;
+        }
+        .hero p { 
+            font-size: 1.3em; 
+            margin-bottom: 35px; 
+            font-weight: 400; 
+            opacity: 0.95;
+        }
+        
+        /* CTA 버튼 */
+        .cta-btn { 
+            background-color: var(--btn-cta); 
+            color: var(--white); 
+            padding: 18px 45px; 
+            font-size: 1.25em; 
+            font-weight: 700; 
+            border: none; 
+            border-radius: 6px; 
+            cursor: pointer; 
+            transition: background-color 0.3s, transform 0.2s; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15); 
+            text-decoration: none; 
+            display: inline-block; 
+            margin-top: 15px; 
+        }
+        .cta-btn:hover { 
+            background-color: #BE6447; 
+            transform: translateY(-3px); 
+        }
+
+        /* 진단 계산 폼 박스 */
+        .calculator-box { 
+            background-color: var(--white); 
+            padding: 45px; 
+            border-radius: 12px; 
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08); 
+            margin-top: -40px; 
+            position: relative; 
+            z-index: 10; 
+            border-top: 5px solid var(--accent-color); 
+            text-align: left; 
+        }
+        .calculator-box h2 { 
+            color: var(--primary-color); 
+            text-align: center; 
+            margin-bottom: 25px; 
+            font-size: 1.8em; 
+            font-weight: 700; 
+        }
+        .calculator-box label { 
+            display: block; 
+            margin-bottom: 8px; 
+            font-weight: 700; 
+            color: var(--text-color); 
+            font-size: 1.05em; 
+        }
+        .calculator-box input, .calculator-box select { 
+            width: 100%; 
+            padding: 14px; 
+            margin-bottom: 20px; 
+            border: 1px solid var(--bg-medium); 
+            border-radius: 6px; 
+            box-sizing: border-box; 
+            font-size: 1em; 
+            background-color: #FAF9F7;
+            color: var(--text-color);
+        }
+        .form-row { 
+            display: flex; 
+            gap: 20px; 
+        }
+        .form-column { 
+            flex: 1; 
+        }
+        
+        /* 결과 노출 영역 */
+        .calc-result {
+            display: none;
+            margin-top: 25px;
+            padding: 25px;
+            background-color: var(--soft-blue);
+            border-radius: 8px;
+            border-left: 5px solid var(--secondary-color);
+        }
+        .calc-result h4 {
+            margin-top: 0;
+            color: var(--primary-color);
+            font-size: 1.2em;
+        }
+        .calc-result p {
+            margin: 8px 0;
+            font-size: 1.05em;
+        }
+
+        /* 컨텐츠 섹션 */
+        .content-section { 
+            background-color: var(--white); 
+            padding: 65px 0; 
+            margin-top: 30px; 
+            border-radius: 12px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04); 
+        }
+        .content-section h2 { 
+            font-size: 2.2em; 
+            color: var(--primary-color); 
+            border-bottom: 3px solid var(--soft-yellow); 
+            padding-bottom: 12px; 
+            margin-bottom: 35px; 
+            text-align: center; 
+            font-weight: 900; 
+        }
+        .content-section h3 { 
+            font-size: 1.6em; 
+            color: var(--secondary-color); 
+            margin-top: 45px; 
+            margin-bottom: 20px; 
+            border-left: 5px solid var(--accent-color); 
+            padding-left: 15px; 
+            font-weight: 700; 
+        }
+        .content-section p { 
+            font-size: 1.1em; 
+            margin-bottom: 25px; 
+            text-align: justify;
+        }
+        .content-section strong { 
+            color: var(--accent-color); 
+            font-weight: 700; 
+        }
+
+        /* 인포 박스 */
+        .info-card {
+            background-color: var(--bg-light);
+            border: 1px solid var(--bg-medium);
+            padding: 30px;
+            border-radius: 8px;
+            margin: 30px 0;
+        }
+        .info-card h4 {
+            margin-top: 0;
+            font-size: 1.2em;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        /* 테이블 스타일 */
+        .data-visualization { 
+            margin: 45px 0; 
+            padding: 30px; 
+            background-color: #FAF9F6; 
+            border-radius: 10px; 
+            border: 1px solid var(--bg-medium); 
+        }
+        .data-visualization h3 { 
+            text-align: center; 
+            color: var(--primary-color); 
+            margin-bottom: 25px; 
+        }
+        .data-table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            text-align: center; 
+            background-color: var(--white);
+        }
+        .data-table th, .data-table td { 
+            border: 1px solid var(--bg-medium); 
+            padding: 14px; 
+            font-size: 0.95em; 
+        }
+        .data-table th { 
+            background-color: var(--soft-yellow); 
+            color: var(--primary-color); 
+            font-weight: 700; 
+        }
+        .data-table tr:nth-child(even) { 
+            background-color: #FDFDFD; 
+        }
+        
+        /* FAQ 영역 */
+        .faq-item { 
+            border-bottom: 1px solid var(--bg-medium); 
+            padding: 22px 0; 
+        }
+        .faq-item h3 { 
+            cursor: pointer; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            font-size: 1.2em; 
+            color: var(--primary-color); 
+            font-weight: 700; 
+            margin: 0;
+            border-left: none;
+            padding-left: 0;
+        }
+        .faq-item-trigger {
+            font-size: 0.9em;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+        .faq-item p { 
+            display: none; 
+            padding: 15px 20px; 
+            color: #4A554F; 
+            background-color: var(--bg-light); 
+            border-radius: 6px; 
+            margin-top: 12px; 
+            font-size: 1em;
+        }
+        .faq-item.active p { 
+            display: block; 
+        }
+        
+        /* 키워드 리스트 */
+        .keyword-list { 
+            list-style: none; 
+            padding: 0; 
+            display: flex; 
+            flex-wrap: wrap; 
+            justify-content: center; 
+            margin-top: 35px; 
+        }
+        .keyword-list li { 
+            background-color: var(--secondary-color); 
+            color: var(--white); 
+            padding: 10px 20px; 
+            margin: 6px; 
+            border-radius: 20px; 
+            font-weight: 500; 
+            font-size: 0.95em; 
+            transition: background-color 0.3s; 
+        }
+        .keyword-list li:hover { 
+            background-color: var(--primary-color); 
+        }
+        
+        /* 외부 신뢰 링크 */
+        .external-links { 
+            margin-top: 45px; 
+            padding: 30px; 
+            border-top: 3px solid var(--accent-color); 
+        }
+        .external-links ul { 
+            list-style: none; 
+            padding: 0; 
+        }
+        .external-links li { 
+            margin-bottom: 15px; 
+        }
+        .external-links a { 
+            color: var(--secondary-color); 
+            text-decoration: none; 
+            font-weight: 700; 
+            font-size: 1.05em; 
+            transition: color 0.3s; 
+            border-bottom: 1px dashed var(--secondary-color); 
+            padding-bottom: 2px; 
+        }
+        .external-links a:hover { 
+            color: var(--accent-color); 
+            border-bottom-color: var(--accent-color); 
+        }
+
+        /* 푸터 */
+        footer { 
+            background-color: var(--primary-color); 
+            color: var(--white); 
+            text-align: center; 
+            padding: 45px 20px; 
+            font-size: 0.95em; 
+            margin-top: 40px;
+        }
+        footer a { 
+            color: var(--soft-yellow); 
+            text-decoration: none; 
+            margin: 0 12px; 
+        }
+        footer a:hover { 
+            text-decoration: underline; 
+        }
+
+        /* 반응형 */
+        @media (max-width: 900px) {
+            .form-row { flex-direction: column; gap: 0; }
+            .content-section h2 { font-size: 1.8em; }
+            .content-section h3 { font-size: 1.4em; }
+            .calculator-box { padding: 25px; }
+        }
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 2.2em; }
+            .cta-btn { padding: 15px 30px; font-size: 1.1em; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <h1><a href="/">도수치료 실비보험 환급 가이드 2026 비급여 보장 및 청구 핵심 정보</a></h1>
+        </div>
+    </header>
+
     <main>
-      <h1>Home page</h1>
+        <section class="hero">
+            <div class="container">
+                <h1>도수치료 실비보험 보장금액 1분 예상 계산기</h1>
+                <p>내가 가입한 실손의료보험 세대에 맞는 예상 본인부담금과 환급금을 산출해 드립니다.</p>
+                
+                <div class="calculator-box">
+                    <h2>도수치료 실손의료비 환급금 및 보험료 변동성 진단</h2>
+                    <p style="color: var(--text-color); margin-bottom: 25px; text-align: center;">정확한 가입 시기와 치료 비용을 입력하시면 예상 청구 계산 결과를 즉시 확인할 수 있습니다.</p>
+                    
+                    <form id="silbiCalcForm" onsubmit="calculateSilbi(event)">
+                        <div class="form-row">
+                            <div class="form-column">
+                                <label for="userName">성함</label>
+                                <input type="text" id="userName" placeholder="이름을 기입해 주십시오" required>
+                            </div>
+                            <div class="form-column">
+                                <label for="userAge">만 나이 기준 연령</label>
+                                <select id="userAge" required>
+                                    <option value="">선택하십시오</option>
+                                    <option value="20">만 20세 이상 29세 이하</option>
+                                    <option value="30">만 30세 이상 39세 이하</option>
+                                    <option value="40">만 40세 이상 49세 이하</option>
+                                    <option value="50">만 50세 이상 59세 이하</option>
+                                    <option value="60">만 60세 이상</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-column">
+                                <label for="silbiGeneration">실손의료보험 가입 세대 종류</label>
+                                <select id="silbiGeneration" required>
+                                    <option value="">가입 시기 선택</option>
+                                    <option value="gen1">1세대 실비보험 (2009년 10월 이전 가입)</option>
+                                    <option value="gen2">2세대 실비보험 (2009년 10월 ~ 2017년 3월)</option>
+                                    <option value="gen3">3세대 실비보험 (2017년 4월 ~ 2021년 6월)</option>
+                                    <option value="gen4">4세대 실비보험 (2021년 7월 ~ 현재 2026년)</option>
+                                </select>
+                            </div>
+                            <div class="form-column">
+                                <label for="therapyCost">회당 도수치료 금액 비용 (원)</label>
+                                <input type="number" id="therapyCost" placeholder="예: 150000" min="1000" step="1000" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-column">
+                                <label for="therapyCount">연간 예상 도수치료 횟수 (회)</label>
+                                <input type="number" id="therapyCount" placeholder="예: 20" min="1" max="100" required>
+                            </div>
+                            <div class="form-column">
+                                <label for="basePremium">현재 납입하는 월 평균 실손 보험료 (원)</label>
+                                <input type="number" id="basePremium" placeholder="예: 35000" min="1000" step="100" required>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="cta-btn" style="width: 100%; display: block; border-radius: 6px;">예상 보상 금액 및 갱신 할증 진단 결과 확인</button>
+                    </form>
+
+                    <div id="calcResultBox" class="calc-result">
+                        <h4 id="resultTitle">환급 분석 결과</h4>
+                        <p id="totalCostText">총 예상 치료비: 0원</p>
+                        <p id="copaymentText">예상 본인부담금 총액: 0원</p>
+                        <p id="refundText">실손보험 예상 보상 환급금: 0원</p>
+                        <p id="surchargeText" style="font-weight: bold; color: var(--accent-color);"></p>
+                        <p id="adviceText" style="font-size: 0.95em; color: #555; margin-top: 15px; border-top: 1px solid var(--bg-medium); padding-top: 15px;"></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container">
+                <h2>도수치료 실비보험 보장체계 분석 및 2026년 개정 기준</h2>
+                
+                <p>
+                    척추 질환이나 골반 불균형, 오십견 등으로 인해 정형외과나 재활의학과를 찾는 환자들에게 <strong>도수치료 실비보험</strong>은 가장 핵심적인 의료비 보전 수단입니다. 도수치료는 건강보험이 적용되지 않는 대표적인 비급여 진료 항목이기 때문에 병원별로 책정하는 금액이 천차만별입니다. 이러한 도수치료 비용 부담을 덜기 위해 많은 가입자가 자신이 가입한 실손의료보험을 통해 청구를 진행하지만, 가입한 세대별 시기에 따라 환급받을 수 있는 금액과 공제 기준에 상당한 차이가 존재합니다. 
+                </p>
+
+                <p>
+                    2026년 실손의료보험 시장은 과거 1세대, 2세대, 3세대 실비를 유지하고 있는 기가입자들과 최근 출시되어 합리적인 기본 요금을 장점으로 삼는 4세대 실손보험 신규 가입자 간의 보장 편차가 더욱 뚜렷해졌습니다. 특히 4세대 실손의료보험의 경우에는 비급여 항목 청구 이력에 따라 이듬해 납입 요금이 차등 적용되는 <strong>비급여 보험료 차등제</strong>가 본 궤도에 정착함에 따라, 무분별하게 과다 청구를 진행할 경우 보험료 요금제가 폭발적으로 인상되는 단점이 있어 세심한 관리와 계산기 활용이 필수적입니다.
+                </p>
+
+                <h3>1세대부터 4세대까지 세대별 도수치료 보장 비교</h3>
+                <p>
+                    실손보험은 가입한 시점에 따라 보장하는 범위와 자기부담 요율이 극명히 나뉩니다. 과거 상품일수록 혜택의 범위가 넓고 자기부담금 요율이 낮지만, 그만큼 매년 갱신 시 인상되는 보험료 부담이 무겁다는 장단점이 뚜렷하게 존재합니다.
+                </p>
+
+                <div class="data-visualization">
+                    <h3>세대별 실손보험 도수치료 본인부담금 및 보장 한도 대조표</h3>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>구분 및 세대</th>
+                                <th>가입 시기</th>
+                                <th>본인부담금 기준</th>
+                                <th>연간 보장 한도 및 횟수</th>
+                                <th>비급여 차등제 적용 유무</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1세대 실손보험</td>
+                                <td>2009년 10월 이전 가입</td>
+                                <td>0원 혹은 상해통원 시 5,000원</td>
+                                <td>통원일수별 계약 한도 적용</td>
+                                <td>미적용 (일괄 갱신)</td>
+                            </tr>
+                            <tr>
+                                <td>2세대 실손보험</td>
+                                <td>2009년 10월 ~ 2017년 3월</td>
+                                <td>급여, 비급여 통합 10% ~ 20%</td>
+                                <td>통합 통원 한도 (외래 최고 25만원)</td>
+                                <td>미적용 (일괄 갱신)</td>
+                            </tr>
+                            <tr>
+                                <td>3세대 실손보험</td>
+                                <td>2017년 4월 ~ 2021년 6월</td>
+                                <td>도수치료 특약 분리, 30% 부담</td>
+                                <td>연간 최대 350만원, 50회 한도</td>
+                                <td>미적용 (일괄 갱신)</td>
+                            </tr>
+                            <tr>
+                                <td>4세대 실손보험</td>
+                                <td>2021년 7월 ~ 현재 2026년</td>
+                                <td>비급여 30% 및 3만원 중 큰 금액</td>
+                                <td>연간 최대 350만원, 50회 (조건부)</td>
+                                <td>적용 (비급여 청구액 연동 할증)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>4세대 실손보험의 비급여 차등제와 도수치료의 관계</h3>
+                <p>
+                    4세대 실비보험은 기본 보험료가 상대적으로 제일 저렴하다는 최고의 강점을 지니고 있습니다. 그러나 비급여 청구 금액에 따라 할증률이 정교하게 차등되는 시스템이 본격 시행됨에 따라 치료 목적의 적정선 관리가 중요해졌습니다. 비급여인 도수치료 청구액의 누적 비용이 일정 수준을 넘어서면 다음 해 비급여 특약의 보험 요금 요금제에 최대 300퍼센트 수준의 큰 폭의 할증 요금이 가산되는 구조입니다.
+                </p>
+
+                <div class="info-card">
+                    <h4>4세대 실비 비급여 보험료 차등제 적용 등급 기준 안내</h4>
+                    <p>1단계 (할인 구간): 직전 1년간 비급여 보험금 지급액이 0원인 경우 약 5퍼센트 수준의 비급여 특약료 할인 적용</p>
+                    <p>2단계 (유지 구간): 직전 1년간 비급여 보험금 지급액이 100만원 미만인 경우 기존 수준 유지</p>
+                    <p>3단계 (100% 할증): 직전 1년간 비급여 보험금 지급액이 100만원 이상 150만원 미만인 경우 해당 비급여 요금 100퍼센트 할증</p>
+                    <p>4단계 (200% 할증): 직전 1년간 비급여 보험금 지급액이 150만원 이상 300만원 미만인 경우 해당 비급여 요금 200퍼센트 할증</p>
+                    <p>5단계 (300% 할증): 직전 1년간 비급여 보험금 지급액이 300만원 이상인 경우 해당 비급여 요금 300퍼센트 할증</p>
+                </div>
+
+                <p>
+                    예를 들어 평소 도수치료 비용이 1회당 평균 15만원인 정형외과에서 10회 치료를 받아 150만원을 실비 청구했다면, 본인부담금 30퍼센트를 공제하고 실손 보상금 환급으로 받은 총액이 약 105만원에 달하게 됩니다. 이 경우 수령한 비급여 청구 누계액이 100만원을 초과하였으므로 다음 해 비급여 보험료가 100퍼센트 할증되는 3단계 적용을 피할 수 없습니다. 따라서 만약 본인이 4세대 가입자라면 다이렉트 신규 요금제 설계 시 혹은 기존 유지 시 이러한 요금 시뮬레이션을 면밀하게 실행하는 과정이 선행되어야 장기적인 비용 지출을 예방하는 핵심 요령이 됩니다.
+                </p>
+
+                <h3>연령대 및 개인별 도수치료 실비보험 맞춤형 설계 방향</h3>
+                <p>
+                    보험 가입자의 연령에 따라서도 실비보험 가입 방법과 최적의 요금 설계에 차이가 있습니다. 
+                    20대 사회 초년생이나 대학생의 경우 스마트폰 앱 및 어플을 활용한 비급여 한도 조회가 익숙하며 신체적 회복 속도가 상대적으로 빠르기 때문에 보험료 가격 면에서 제일 싼곳이자 최저가 유지가 용이한 4세대 실손이나 다이렉트 단독 실비 가입을 추천하는 추세입니다. 20대 연령에서는 월 납입금액 자체가 저렴하기 때문에 소액 치료 후 간편 청구하는 것이 효율적입니다.
+                </p>
+                <p>
+                    반면 30대와 40대 직장인들의 경우 본격적으로 거북목, 허리 디스크, 근골격계 통증 수치가 증가하는 시기입니다. 30대 및 40대는 업무적 스트레스와 육아 등으로 도수치료 이용 횟수가 많아지는 경향이 있으므로, 본인이 이전에 가입해 둔 구실손보험(1, 2세대)의 혜택 보존 가치를 가장 우선적으로 체크해 보아야 합니다. 1, 2세대 실손은 도수치료 연간 횟수 제한이 매우 너그럽고 본인부담금이 적어 치료 혜택 면에서 압도적인 장점이 있지만 갱신 시 보험 요금이 가파르게 상승하는 단점이 있으므로 본인의 연간 이용 요율을 계산하여 유지 여부를 컨설팅받는 것이 합리적입니다.
+                </p>
+                <p>
+                    50대와 60대 이상 시니어 세대의 경우 퇴행성 관절염이나 척추관 협착증 같은 만성적인 근골격 질환에 노출될 확률이 현격히 높습니다. 이 연령대에서 도수치료 실비보험 신규 가입 시에는 과거 질병 이력(고혈압, 당뇨 등)으로 인해 가입 제한을 받거나 인수 조건이 까다로워져 유병자 실손의료보험 등의 대체 상품 종류를 비교 설계해야 할 수 있습니다. 유병자 실비 상품은 일반적인 다이렉트 실손보험에 비해 가입 문턱이 낮은 장점이 있는 반면 비급여 도수치료 항목의 보장에서 일부 제한이 생길 수 있으므로 전문 상담 업체를 통해 보장 범위의 차이점을 구체적으로 파악하고 신청하는 절차를 권장합니다.
+                </p>
+
+                <h3>온라인 정보 탐색과 커뮤니티 내돈내산 가입 및 치료 동향</h3>
+                <p>
+                    요즘 스마트한 의료 소비자들은 도수치료 병원 저렴한곳이나 실비 처리가 잘 되는 성지, 좌표 등의 정보를 활발히 수집하고 있습니다. 디시인사이드, 보배드림, 에펨코리아, 펨코 등 대표적인 국내 온라인 커뮤니티 공간에는 도수치료 실비보험 내돈내산 후기 관련 팁들이 연일 업데이트됩니다. 과잉 진료가 없는 의원 목록을 추천받거나, 실비보험 청구 시 어떤 의료 코드로 세부내역서를 받아야 분쟁 없이 빠르게 환급받을 수 있는지에 대한 경험담이 빈번하게 교환됩니다.
+                </p>
+                <p>
+                    또한 네이버, 구글, 유튜브와 같은 대형 플랫폼은 물론, 모바일 친화적인 소셜 미디어 플랫폼인 인스타그램, 페이스북, 카카오톡 오픈채팅방, 텔레그램이나 트위터 등에서도 비급여 실비 청구 서류 누락 방지 가이드나 특정 브랜드별 고객센터 연동 앱들의 사용 편의성 순위 정보가 빠르게 전파되고 있습니다. 특히 최근에는 토스나 카카오톡과 같은 자산관리 어플 내에 탑재된 실손청구 대행 서비스를 이용해 영수증 사진 한 장만으로 몇 분 만에 청구를 마치는 금융 생활이 대세로 굳어졌습니다.
+                </p>
+                <p>
+                    뿐만 아니라, 일반 포털 정보 검색을 넘어 최근 트렌드인 제미나이, 챗지피티, AI 기반 인공지능 탐색 에이전트를 동원해 본인이 가입한 약관 요약서 전문을 분석시키고 예상 자기부담 한도를 실시간으로 산출해 보는 똑똑한 환자들도 늘었습니다. 이러한 IT 및 인슈어테크 기술의 접목은 복잡한 서류 절차의 피로감을 해소하고 보상 사각지대를 방지하는 데 큰 기여를 하고 있습니다.
+                </p>
+
+                <h3>다이렉트 실비보험 가입 시 혜택과 주의해야 할 과장 광고</h3>
+                <p>
+                    인터넷 온라인 사이트를 직접 이용해 다이렉트 실비보험에 신규 가입하거나 4세대로의 전환을 알아볼 때, 소비자를 유혹하는 마케팅 활동을 주의 깊게 판별해야 합니다. 일부 중개 업체나 인터넷 영업 사이트에서는 가입 조건에 따라 과도한 사은품 지급, 현금지원, 전액 지원금 보장 및 고가의 백화점 상품권 증정이나 대규모 캐시백 이벤트 혜택 등을 내세워 계약을 유도하곤 합니다.
+                </p>
+                <p>
+                    그러나 실손보험과 같은 기본적인 공적 성격의 장기 금융 상품은 단발적인 사은품이나 현금 혜택보다 매월 지출되는 요금제의 누적 지출액과 갱신 위험도, 향후 도수치료 장기 보상 실효성을 면밀히 비교하는 것이 훨씬 이득입니다. 따라서 특정 이벤트 문구에 현혹되기보다는 금융감독원이나 공식 협회가 감독하는 다이렉트 공식 청구를 이용해 투명하게 비용을 산출해 보고 가입을 최종 결정하는 것이 권장되는 현명한 방법입니다.
+                </p>
+
+                <h3>도수치료 실비보험 청구 시 주의사항과 분쟁 방지 요령</h3>
+                <p>
+                    실비보험 청구 시 보험사와 가입자 간에 가장 잦은 분쟁이 유발되는 지점이 바로 도수치료 비급여 부문입니다. 
+                    핵심 원인은 치료의 목적성 소명에 있습니다. 약관상 실손의료보험은 신체 기능의 장애를 회복하기 위한 치료 목적의 의료 행위만을 보상 대상으로 규정하고 있습니다. 만일 외형적 골격 개선이나 단순 체형 교정, 피로 회복 목적의 마사지 형태에 불과한 도수치료를 받고 청구할 경우에는 지급 심사에서 반려되거나 정밀 조사가 진행될 여지가 큽니다.
+                </p>
+                <p>
+                    특히 3세대 및 4세대 실손보험에서는 최초 10회에서 20회 치료 이후부터는 증상의 호전 여부와 객관적인 기능 개선을 증명하는 전문의의 임상적 소견 소명 자료를 정기적으로 제출하도록 약관에 명시되어 있습니다. 치료 전후의 관절 가동 범위 비교 수치나 통증 척도 점수 변화 등이 차트에 지속적으로 기록되어야 하며 물리치료 기록지, 의학적 검사 결과서 등이 뒷받침되어야 안전하게 환급금을 받을 수 있습니다. 진료를 시작하기 전 담당 정형외과 전문의에게 자신이 가입한 실손보험 세대에 부합하는 소명 서류 처리가 원활한 병원인지를 먼저 점검하는 지혜도 중요합니다.
+                </p>
+            </div>
+        </section>
+
+        <section class="content-section" style="background-color: var(--bg-light);">
+            <div class="container">
+                <h2>자주 묻는 질문 (도수치료 실비보험 FAQ)</h2>
+                
+                <div class="faq-item">
+                    <h3 id="faq1">도수치료는 연간 최대 몇 회까지 실비보험 청구가 가능한가요? <span class="faq-item-trigger">답변열기</span></h3>
+                    <p>가입 시점에 따라 다릅니다. 2017년 4월 이후 가입한 3세대 및 4세대 실손보험의 경우에는 기본적으로 연간 최대 50회, 총 보장 한도 350만원 이내에서 청구가 가능합니다. 다만 4세대 실비의 경우 최초 10회 치료 이후부터는 객관적인 증상 개선 여부를 입증하는 서류가 병행 제출되어야 매 10회 단위로 연장 승인이 원활히 이뤄집니다.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3 id="faq2">체형 교정이나 골반 불균형 교정 목적으로 받은 도수치료도 환급되나요? <span class="faq-item-trigger">답변열기</span></h3>
+                    <p>단순한 외모 개선용 체형 교정이나 미용, 피로 회복 성격의 마사지 형태 치료는 실손보험 보장 대상에서 제외됩니다. 목디스크, 요추 염좌, 척추 불균형으로 인한 유의미한 관절 기능 장애 등 뚜렷한 질병이나 부상 치료를 목적으로 시행되었다는 전문의 처방 및 소견이 확인되어야 실비 청구가 인정됩니다.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3 id="faq3">한의원에서 진행하는 추나요법과 도수치료는 어떤 실비 기준 차이가 있나요? <span class="faq-item-trigger">답변열기</span></h3>
+                    <p>도수치료는 정형외과 등에서 진행하는 비급여 항목인 반면, 추나요법은 한의원에서 시행하는 급여 항목에 해당합니다. 따라서 추나요법은 한의원 통원 시 급여 본인부담금 기준을 적용받아 실손 청구가 비교적 고정적인 틀 안에서 이뤄지나, 도수치료는 비급여 특약 보장 비율(세대별 70퍼센트에서 100퍼센트)에 맞춰 계산되므로 환급 비율 산출 시 기준 차이점을 명확히 알아두어야 합니다.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3 id="faq4">치료 횟수가 늘어나 4세대 실비 할증 기준인 100만원을 넘기면 어떻게 대처하나요? <span class="faq-item-trigger">답변열기</span></h3>
+                    <p>4세대 실비의 비급여 할인할증 시스템은 연간 누적 청구 금액을 기준으로 이듬해에만 한시적으로 할증 요율이 부여되는 방식입니다. 통증이 매우 극심한 시기에는 단기적으로 집중 치료를 통해 빠른 쾌유를 도모하고, 증상이 호전된 후에는 치료 횟수를 조정하거나 급여 물리치료 등의 보완 수단을 활용하여 비급여 청구 총액을 100만원 이하의 안전한 구간으로 낮추는 장기적 계획을 권장합니다.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3 id="faq5">실비보험을 신규로 다이렉트 청구하여 가입하면 갱신 주기는 어떻게 되나요? <span class="faq-item-trigger">답변열기</span></h3>
+                    <p>현재 판매되는 4세대 실손의료보험 상품은 매년 보험료가 연령 및 위험률에 맞춰 자동 변동되는 1년 단위 갱신형 구조를 취하고 있습니다. 또한 보장 한도나 본인부담금 등 제도적인 기본 틀 자체가 개정되는 재가입 주기는 5년 단위로 설정되어 있습니다.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container">
+                <h2>함께 많이 찾는 도수치료 실비보험 핵심 키워드</h2>
+                <ul class="keyword-list">
+                    <li>#도수치료실비보험</li>
+                    <li>#실손의료비도수치료</li>
+                    <li>#4세대실비보험할증</li>
+                    <li>#비급여도수치료비용</li>
+                    <li>#도수치료실비서류</li>
+                    <li>#정형외과도수치료환급</li>
+                    <li>#실손보험다이렉트비교</li>
+                    <li>#유병자실비보험도수</li>
+                    <li>#도수치료실손한도</li>
+                    <li>#도수치료내돈내산후기</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container external-links">
+                <h2>공신력 있는 실무 및 의료보험 정보 출처</h2>
+                <p>도수치료 실손의료비 청구와 제도 변화에 관한 보다 면밀한 법적, 의학적 정보는 아래 공식 포털을 통해 추가로 확인하실 수 있습니다.</p>
+                <ul>
+                    <li><a href="https://silbietopbohumc.directreliable.com" target="_blank" rel="nofollow noopener">실손보험 비교 가이드 센터</a>: 신뢰성 높은 최신 실손보험 개정 동향 및 세대별 환급율 정보 제공</li>
+                    <li><a href="https://namu.wiki/w/%EC%8B%A4%EC%86%90%EC%9D%98%EB%A3%8C%EB%B3%B4%ED%97%98" target="_blank" rel="nofollow noopener">나무위키 실손의료보험 가이드</a>: 실무적인 실손 보장 개념과 약관 발자취의 백과사전식 정리</li>
+                    <li><a href="https://www.fss.or.kr" target="_blank" rel="nofollow noopener">금융감독원 공식 홈페이지</a>: 비급여 실손의료보험 불합리한 분쟁 예방 및 금융 소비자 권익 구제 감독 지침</li>
+                    <li><a href="https://www.nhis.or.kr" target="_blank" rel="nofollow noopener">국민건강보험공단 공식 홈페이지</a>: 급여 추나요법 보장 가이드라인 및 공적 의료체계 소식 안내</li>
+                </ul>
+            </div>
+        </section>
     </main>
-  </body>
-</html>
+
+    <script>
+        // FAQ 아코디언 기능
+        document.querySelectorAll('.faq-item h3').forEach(item => {
+            item.addEventListener('click', () => {
+                const parent = item.parentElement;
+                const isAlreadyActive = parent.classList.contains('active');
+                
+                // 다른 열려있는 질문 모두 닫기
+                document.querySelectorAll('.faq-item').forEach(child => {
+                    child.classList.remove('active');
+                    const triggerText = child.querySelector('.faq-item-trigger');
+                    if (triggerText) triggerText.textContent = "답변열기";
+                });
+                
+                if (!isAlreadyActive) {
+                    parent.classList.add('active');
+                    const currentTrigger = parent.querySelector('.faq-item-trigger');
+                    if (currentTrigger) currentTrigger.textContent = "답변닫기";
+                }
+            });
+        });
+
+        // 실손 환급금 진단 계산기 로직
+        function calculateSilbi(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('userName').value;
+            const ageGroup = document.getElementById('userAge').value;
+            const gen = document.getElementById('silbiGeneration').value;
+            const cost = parseFloat(document.getElementById('therapyCost').value);
+            const count = parseInt(document.getElementById('therapyCount').value);
+            const premium = parseFloat(document.getElementById('basePremium').value);
+
+            if (!name || !ageGroup || !gen || isNaN(cost) || isNaN(count) || isNaN(premium)) {
+                alert("모든 입력란을 정상적으로 작성해 주시기 바랍니다.");
+                return;
+            }
+
+            const totalTreatmentCost = cost * count;
+            let copaymentTotal = 0;
+            let expectedRefund = 0;
+            let surchargeStatus = "보험료 차등 인상 대상 아님";
+            let surchargeDesc = "";
+            let advice = "";
+
+            if (gen === "gen1") {
+                // 1세대: 통상 본인부담금이 매우 적음 (5,000원 공제 예시)
+                const ded = 5000 * count;
+                expectedRefund = totalTreatmentCost - ded;
+                copaymentTotal = ded;
+                advice = "고객님은 보장 혜택이 매우 우수한 1세대 구실손보험 가입자이십니다. 본인부담률이 거의 없거나 매우 낮아 큰 경제적 도움을 받으실 수 있지만, 갱신 시 보험료 누적 상승 압박이 크게 작용할 수 있으니 연간 통증 관리를 규칙적으로 하시는 것이 바람직합니다.";
+            } else if (gen === "gen2") {
+                // 2세대: 평균 10% ~ 20% 본인부담률
+                copaymentTotal = totalTreatmentCost * 0.15; // 15% 임의 계산
+                expectedRefund = totalTreatmentCost - copaymentTotal;
+                advice = "2세대 실비를 유지 중이신 경우 부담 비율이 15퍼센트 수준으로 무난하며 연간 한도 일수 범위 내에서 비교적 폭넓게 도수치료 이용이 가능한 장점이 있습니다. 치료 이력이 많아도 당장 개인별 요금제 할증은 가산되지 않습니다.";
+            } else if (gen === "gen3") {
+                // 3세대: 특약 분리, 30% 부담
+                copaymentTotal = totalTreatmentCost * 0.3;
+                expectedRefund = totalTreatmentCost - copaymentTotal;
+                advice = "3세대 실손가입자는 비급여 특약으로 도수치료가 정형화된 시기로 연간 최대 50회와 350만원 한도로 묶여 있습니다. 30퍼센트 본인부담이 적정 금액 수준이며, 횟수를 초과하지 않도록 정기 조절이 요구됩니다.";
+            } else if (gen === "gen4") {
+                // 4세대: 비급여 30% 및 3만원 중 큰 금액 공제
+                let singleSessionDeductible = Math.max(cost * 0.3, 30000);
+                copaymentTotal = singleSessionDeductible * count;
+                
+                if (copaymentTotal > totalTreatmentCost) {
+                    copaymentTotal = totalTreatmentCost;
+                }
+                expectedRefund = totalTreatmentCost - copaymentTotal;
+
+                // 비급여 수령 총금액 기준으로 차등 등급 산출
+                const totalNonBenefitReceived = expectedRefund;
+                
+                if (totalNonBenefitReceived >= 3000000) {
+                    surchargeStatus = "경고: 5단계 할증 (300퍼센트 인상)";
+                    surchargeDesc = "수령하신 비급여 보상 누적 금액이 300만원을 초과하여, 이듬해 비급여 특약 요금이 300퍼센트 할증 부과됩니다.";
+                } else if (totalNonBenefitReceived >= 1500000) {
+                    surchargeStatus = "경고: 4단계 할증 (200퍼센트 인상)";
+                    surchargeDesc = "수령하신 비급여 보상 누적 금액이 150만원을 초과하여, 이듬해 비급여 특약 요금이 200퍼센트 할증 부과됩니다.";
+                } else if (totalNonBenefitReceived >= 1000000) {
+                    surchargeStatus = "경고: 3단계 할증 (100퍼센트 인상)";
+                    surchargeDesc = "수령하신 비급여 보상 누적 금액이 100만원을 초과하여, 이듬해 비급여 특약 요금이 100퍼센트 할증 부과됩니다.";
+                } else if (totalNonBenefitReceived > 0) {
+                    surchargeStatus = "유지 단계 (동결)";
+                    surchargeDesc = "비급여 환급 수령액이 100만원 미만으로 이듬해 비급여 보험료가 동일 수준으로 동결 유지됩니다.";
+                } else {
+                    surchargeStatus = "할인 단계 (감액)";
+                    surchargeDesc = "도수치료 실비 청구액이 없어 다음 해 비급여 보험료가 약 5퍼센트 감액되는 혜택을 보실 수 있습니다.";
+                }
+                
+                advice = "4세대 실비 가입자는 비급여 누적 환급 규모가 100만원 임계치를 초과할 시 요금제가 대폭 할증될 위험이 있습니다. 건강 유지 상태를 면밀히 점검하시면서 비급여 청구를 합리적인 연간 예산 계획 하에 정교하게 청구 관리하셔야 경제적인 손실을 막을 수 있습니다.";
+            }
+
+            // 결과 바인딩 및 노출
+            document.getElementById('totalCostText').textContent = "연간 총 예상 치료비: " + totalTreatmentCost.toLocaleString() + " 원";
+            document.getElementById('copaymentText').textContent = "예상 본인부담금 총액: " + copaymentTotal.toLocaleString() + " 원";
+            document.getElementById('refundText').textContent = "실손보험 예상 보상 환급금: " + expectedRefund.toLocaleString() + " 원";
+            
+            if (gen === "gen4") {
+                document.getElementById('surchargeText').textContent = "4세대 비급여 할증 등급: " + surchargeStatus + " (" + surchargeDesc + ")";
+            } else {
+                document.getElementById('surchargeText').textContent = "비급여 개인별 개별 할증 제도: 해당 세대 없음 (연령 통합 공동 요율로 상승)";
+            }
+            
+            document.getElementById('adviceText').textContent = name + " 고객님을 위한 2026 맞춤 진단평가: " + advice;
+
+            // 결과 박스 보여주기
+            document.getElementById('calcResultBox').style.display = "block";
+            
+            // 화면 스크롤 부드럽게 내리기
+            document.getElementById('calcResultBox').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+  
